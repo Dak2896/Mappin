@@ -1,12 +1,13 @@
 <?php
 
 namespace Map;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    //use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable;
     public function photos()
     {
       return $this->hasMany('Map\Photo');
@@ -28,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'surname',
+        'name', 'email', 'password', 'surname', 'birtdahy',
     ];
 
     /**
