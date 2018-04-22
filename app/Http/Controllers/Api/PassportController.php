@@ -59,6 +59,7 @@ class PassportController extends Controller
         $success['birthday'] = $user->birthday;
 
 
+
         return response()->json(['success'=>$success], $this->successStatus);
     }
 
