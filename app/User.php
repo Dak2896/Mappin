@@ -22,6 +22,9 @@ class User extends Authenticatable
     {
       return $this->belongsTo('Map\User_Event');
     }
+
+
+    use HasApiTokens, Notifiable;
     use Notifiable;
 
     /**
