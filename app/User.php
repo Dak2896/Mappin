@@ -1,6 +1,7 @@
 <?php
 
 namespace Map;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
