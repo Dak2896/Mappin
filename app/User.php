@@ -1,8 +1,6 @@
 <?php
 
 namespace Map;
-
-use Notifiable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -23,9 +21,6 @@ class User extends Authenticatable
     {
       return $this->belongsTo('Map\User_Event');
     }
-
-
-
 
     /**
      * The attributes that are mass assignable.
