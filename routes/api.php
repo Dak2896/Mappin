@@ -23,13 +23,3 @@ Route::resource('events', 'Api\EventApiController');
 
 Route::get('points/{point}', 'PointController@show');
 Route::get('points', 'PointController@index');
-
-
-//USER LOG AND REGISTER
-
-Route::post('login', 'Api\PassportController@login');
-Route::post('register', 'Api\PassportController@register');
-
-Route::group(['middleware' => 'auth:api'], function(){
-	Route::post('get-details', 'Api\PassportController@getDetails');
-});
