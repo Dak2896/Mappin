@@ -22,7 +22,7 @@ $factory->define(Map\User::class, function (Faker $faker) {
         'number_events' => $faker->randomDigit,
         'surname' => $faker->lastname,
         'birthday'=> $faker->datetime,
-        
+
     ];
 
 });
