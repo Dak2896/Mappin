@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('surname');
+            $table->string('surname')->default('capra');
             $table->integer('number_events')->default('0');
             $table->datetime('birthday')->default('2015-10-08 00:07:15');
             $table->rememberToken();
