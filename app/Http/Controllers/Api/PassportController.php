@@ -37,11 +37,12 @@ class PassportController extends Controller
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'numer_events' => 'required',
+          //  'number_events' => 'required',
             'name' => 'required',
             'surname' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'birthday' => 'required',
             'c_password' => 'required|same:password',
         ]);
 
@@ -55,7 +56,7 @@ class PassportController extends Controller
         $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
         $success['surname'] =  $user->surname;
-        $success['number_events'] = $user->number_events;
+        $success['birthday'] = $user->birthday;
 
 
         return response()->json(['success'=>$success], $this->successStatus);

@@ -6,7 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
+    //use HasApiTokens, Notifiable;
     public function photos()
     {
       return $this->hasMany('Map\Photo');
