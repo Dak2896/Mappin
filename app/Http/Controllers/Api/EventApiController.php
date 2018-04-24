@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Map\Http\Controllers\Api\ApiBaseController as ApiBaseController;
 use Map\Event;
 use Validator;
+use Map\User_Event;
 
 
 class EventApiController  extends ApiBaseController
@@ -73,6 +74,22 @@ class EventApiController  extends ApiBaseController
         return $this->sendResponse($event->toArray(), 'Event retrieved successfully.');
     }
 
+
+
+    /** Get event of logged user
+    *
+    *
+    * @param  int  $id
+    * @return \Illuminate\Http\Response
+    *
+    *
+    *
+    */
+    public function indexUser($id)
+    {
+        $events = User_event::find($id);
+        return $this->sendResponse($events->toArray(), 'Events of user retrieved successfully.');
+    }
 
     /**
      * Update the specified resource in storage.

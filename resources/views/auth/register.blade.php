@@ -1,4 +1,6 @@
 @extends('layouts.app')
+<link rel="shortcut icon" href="{{ asset('icona.png') }}">
+<title>Register - Mappin</title>
 
 @section('content')
 <div class="container">
@@ -20,6 +22,32 @@
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">{{ __('Surname') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
+
+                                @if ($errors->has('surname'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('surname') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="birthday" type="date" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required autofocus>
+
+                                @if ($errors->has('birthday'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('birthday') }}</strong>
                                     </span>
                                 @endif
                             </div>

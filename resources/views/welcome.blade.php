@@ -4,18 +4,20 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="{{ asset('icona.png') }}">
+        <script src="login.js"></script>
 
-        <title>Laravel</title>
+        <title>Mappin</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
+                background-image: url("https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg");
+                background-size: cover;
+                background-color: #000000;
+                color: #ffffff;
+                font-family: 'Roboto', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
@@ -46,13 +48,13 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 150px;
             }
 
             .links > a {
-                color: #636b6f;
+                color: #000000;
                 padding: 0 25px;
-                font-size: 12px;
+                font-size: 20px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -62,6 +64,11 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            #logo {
+                height: 20%;
+                width: 20%;
+            }
         </style>
     </head>
     <body>
@@ -69,27 +76,18 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
                     @endauth
                 </div>
             @endif
-
             <div class="content">
+                <img id="logo" src="{{ asset('images/logopositivo.png') }}">
                 <div class="title m-b-md">
-                    Laravel
+                    Mappin
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
         </div>
     </body>
 </html>
