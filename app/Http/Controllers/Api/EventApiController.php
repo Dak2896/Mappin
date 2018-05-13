@@ -74,7 +74,7 @@ class EventApiController  extends ApiBaseController
         return $this->sendResponse($event->toArray(), 'Event retrieved successfully.');
     }
 
-  
+
 
 
     /** Get event of logged user
@@ -88,7 +88,7 @@ class EventApiController  extends ApiBaseController
     */
     public function indexUser($id)
     {
-        $events = User_event::find($id);
+        $events = User_event::where('user_id', $id);
         return $this->sendResponse($events->toArray(), 'Events of user retrieved successfully.');
     }
 
