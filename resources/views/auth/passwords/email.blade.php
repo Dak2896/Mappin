@@ -1,4 +1,6 @@
 @extends('layouts.app')
+<link rel="shortcut icon" href="{{ asset('icona.png') }}">
+<title>Reset Password - Mappin</title>
 
 @section('content')
 <div class="container">

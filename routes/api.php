@@ -23,6 +23,7 @@ Route::resource('events', 'Api\EventApiController');
 
 Route::get('points/{point}', 'PointController@show');
 Route::get('points', 'PointController@index');
+Route::get('myevents/{user_id}', 'Api\EventApiController@indexUser');
 
 
 
