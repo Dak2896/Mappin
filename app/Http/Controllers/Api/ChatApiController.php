@@ -20,7 +20,7 @@ class EventApiController  extends ApiBaseController
     public function index()
     {
         $events = Chat::all();
-        return $this->sendResponse($events->toArray(), 'Chatss retrieved successfully.');
+        return $this->sendResponse($events->toArray(), 'Chats retrieved successfully.');
     }
 
 
