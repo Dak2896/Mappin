@@ -88,7 +88,7 @@ class EventApiController  extends ApiBaseController
     */
     public function indexUser($id)
     {
-        $events = User_event::where('user_id', $id);
+        $events = DB::table('User_event')->where('user_id', $id);
         return $this->sendResponse($events->toArray(), 'Events of user retrieved successfully.');
     }
 
