@@ -5,9 +5,9 @@ namespace Map\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Map\Http\Controllers\Api\ApiBaseController as ApiBaseController;
-use Map\Event;
+use Map\Chat;
 use Validator;
-use Map\User_Event;
+//use Map\User_Event;
 
 
 class EventApiController  extends ApiBaseController
@@ -19,8 +19,8 @@ class EventApiController  extends ApiBaseController
      */
     public function index()
     {
-        $events = Event::all();
-        return $this->sendResponse($events->toArray(), 'Events retrieved successfully.');
+        $events = Chat::all();
+        return $this->sendResponse($events->toArray(), 'Chats retrieved successfully.');
     }
 
 
@@ -36,10 +36,7 @@ class EventApiController  extends ApiBaseController
 
 
         $validator = Validator::make($input, [
-            'category' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'point_id' => 'required'
+            'event_id' => 'required'
         ]);
 
 
@@ -48,10 +45,10 @@ class EventApiController  extends ApiBaseController
         }
 
 
-        $event = Event::create($input);
+        $event = Chat::create($input);
 
 
-        return $this->sendResponse($event->toArray(), 'Event created.');
+        return $this->sendResponse($event->toArray(), 'Chat created.');
     }
 
 
@@ -63,15 +60,15 @@ class EventApiController  extends ApiBaseController
      */
     public function show($id)
     {
-        $event = Event::find($id);
+        $event = Chat::find($id);
 
 
         if (is_null($event)) {
-            return $this->sendError('Event not found.');
+            return $this->sendError('Chat not found.');
         }
 
 
-        return $this->sendResponse($event->toArray(), 'Event retrieved successfully.');
+        return $this->sendResponse($event->toArray(), 'Chat retrieved successfully.');
     }
 
 
@@ -85,11 +82,7 @@ class EventApiController  extends ApiBaseController
     *
     *
     */
-    public function indexUser($id)
-    {
-        $events = User_event::where('user_id', $id);
-        return $this->sendResponse($events->toArray(), 'Events of user retrieved successfully.');
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -104,10 +97,7 @@ class EventApiController  extends ApiBaseController
 
 
         $validator = Validator::make($input, [
-          'category' => 'required',
-          'start_date' => 'required',
-          'end_date' => 'required',
-          'point_id' => 'required'
+          'event_id' => 'required'
         ]);
 
 
@@ -116,20 +106,15 @@ class EventApiController  extends ApiBaseController
         }
 
 
-        $event = Event::find($id);
-        if (is_null($event)) {
-            return $this->sendError('Event not found.');
+        $event = Chat::find($id);
+        if (is_null($chat)) {
+            return $this->sendError('Chat not found.');
         }
+        $chat->event_id = $input['event_id'];
+        $chat->save();
 
 
-        $event->category = $input['category'];
-        $event->start_date = $input['start_date'];
-        $event->end_date = $input['end_date'];
-        $event->point_id = $input['point_id'];
-        $event->save();
-
-
-        return $this->sendResponse($event->toArray(), 'Event updated successfully.');
+        return $this->sendResponse($event->toArray(), 'Chat updated successfully.');
     }
 
 
@@ -141,17 +126,16 @@ class EventApiController  extends ApiBaseController
      */
     public function destroy($id)
     {
-        $event = Event::find($id);
+        $event = Chat::find($id);
 
 
-        if (is_null($event)) {
-            return $this->sendError('Event not found.');
+        if (is_null($chat)) {
+            return $this->sendError('Chat not found.');
         }
 
 
-        $event->delete();
+        $chat->delete();
 
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
     }
-}
