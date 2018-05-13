@@ -23,12 +23,11 @@ Route::resource('events', 'Api\EventApiController');
 
 Route::get('points/{point}', 'PointController@show');
 Route::get('points', 'PointController@index');
-Route::get('myevents/{user_id}', 'Api\EventApiController@indexUser');
 
+Route::resource('user_events', 'Api\User_EventApiController');
 
+Route::resource('chats', 'Api\ChatApiController');
 
-
-  //REGISTER AND LOG
 Route::post('login', 'Api\PassportController@login');
 Route::post('register', 'Api\PassportController@register');
 

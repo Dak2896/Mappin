@@ -5,12 +5,11 @@ namespace Map\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Map\Http\Controllers\Api\ApiBaseController as ApiBaseController;
-use Map\Event;
 use Validator;
 use Map\User_Event;
 
 
-class EventApiController  extends ApiBaseController
+class User_EventController  extends ApiBaseController
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +18,8 @@ class EventApiController  extends ApiBaseController
      */
     public function index()
     {
-        $events = Event::all();
-        return $this->sendResponse($events->toArray(), 'Events retrieved successfully.');
+        $events = User_Event::all();
+        return $this->sendResponse($events->toArray(), 'User_Events retrieved successfully.');
     }
 
 
@@ -36,10 +35,10 @@ class EventApiController  extends ApiBaseController
 
 
         $validator = Validator::make($input, [
-            'category' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'point_id' => 'required'
+            'number_vote' => 'required',
+            'text_vote' => 'required',
+            'event_id' => 'required',
+            'user_id' => 'required'
         ]);
 
 
@@ -48,10 +47,10 @@ class EventApiController  extends ApiBaseController
         }
 
 
-        $event = Event::create($input);
+        $event = User_Event::create($input);
 
 
-        return $this->sendResponse($event->toArray(), 'Event created.');
+        return $this->sendResponse($event->toArray(), 'User_Event created.');
     }
 
 
@@ -63,11 +62,11 @@ class EventApiController  extends ApiBaseController
      */
     public function show($id)
     {
-        $event = Event::find($id);
+        $event = User_Event::find($id);
 
 
         if (is_null($event)) {
-            return $this->sendError('Event not found.');
+            return $this->sendError('User_Event not found.');
         }
 
 
@@ -86,13 +85,7 @@ class EventApiController  extends ApiBaseController
     *
     *
     */
-    public function indexUser($id)
-    {
-        $events = User_event::where('user_id', $id);
-        return $events;
-        //return $this->sendResponse($events->toArray(), 'Events of user retrieved successfully.');
-        //return User_event::where('user_id', $id)->toArray();
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -107,10 +100,10 @@ class EventApiController  extends ApiBaseController
 
 
         $validator = Validator::make($input, [
-          'category' => 'required',
-          'start_date' => 'required',
-          'end_date' => 'required',
-          'point_id' => 'required'
+          'number_vote' => 'required',
+          'text_vote' => 'required',
+          'event_id' => 'required',
+          'user_id' => 'required'
         ]);
 
 
@@ -119,7 +112,7 @@ class EventApiController  extends ApiBaseController
         }
 
 
-        $event = Event::find($id);
+        $event = User_Event::find($id);
         if (is_null($event)) {
             return $this->sendError('Event not found.');
         }
@@ -144,7 +137,7 @@ class EventApiController  extends ApiBaseController
      */
     public function destroy($id)
     {
-        $event = Event::find($id);
+        $event = User_Event::find($id);
 
 
         if (is_null($event)) {
@@ -157,4 +150,5 @@ class EventApiController  extends ApiBaseController
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
     }
+
 }

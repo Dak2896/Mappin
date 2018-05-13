@@ -10,7 +10,7 @@ use Validator;
 //use Map\User_Event;
 
 
-class EventApiController  extends ApiBaseController
+class ChatApiController  extends ApiBaseController
 {
     /**
      * Display a listing of the resource.
@@ -139,3 +139,5 @@ class EventApiController  extends ApiBaseController
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
     }
+
+  }
