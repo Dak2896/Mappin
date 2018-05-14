@@ -19,18 +19,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Route::get('events', 'EventController@index');
 //Route::get('events/{event}', 'EventController@show');
-Route::resource('events', 'Api\EventApiController');
+
+
 
 Route::get('points/{point}', 'PointController@show');
 Route::get('points', 'PointController@index');
 
-Route::resource('user_events', 'Api\User_EventApiController');
 
-Route::resource('chats', 'Api\ChatApiController');
+
 
 Route::post('login', 'Api\PassportController@login');
 Route::post('register', 'Api\PassportController@register');
 
 Route::group(['middleware' => 'auth:api'], function(){
+  Route::resource('events', 'Api\EventApiController');
+  Route::resource('chats', 'Api\ChatApiController');
+  Route::resource('user_events', 'Api\User_EventApiController');
 	Route::post('get-details', 'Api\PassportController@getDetails');
 });
