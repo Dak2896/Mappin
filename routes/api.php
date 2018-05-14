@@ -25,15 +25,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('points/{point}', 'PointController@show');
 Route::get('points', 'PointController@index');
 
+Route::resource('chats', 'Api\ChatApiController');
+Route::resource('user_events', 'Api\User_EventApiController');
 
 
 
 Route::post('login', 'Api\PassportController@login');
 Route::post('register', 'Api\PassportController@register');
+Route::resource('events', 'Api\EventApiController');
+
 
 Route::group(['middleware' => 'auth:api'], function(){
-  Route::resource('events', 'Api\EventApiController');
-  Route::resource('chats', 'Api\ChatApiController');
-  Route::resource('user_events', 'Api\User_EventApiController');
-	Route::post('get-details', 'Api\PassportController@getDetails');
+Route::post('get-details', 'Api\PassportController@getDetails');
 });
