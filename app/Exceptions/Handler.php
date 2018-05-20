@@ -44,11 +44,11 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-     public function render($request, Exception $exception)
+    /* public function render($request, Exception $exception)
    {
        if ($request->wantsJson()) {
            return response()->json(['data'=>'resource not found'], 404);
        }
        return parent::render($request, $exception);
-   }
+   }*/
 }
