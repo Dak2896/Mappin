@@ -3,6 +3,12 @@
 namespace Map\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Charts;
+
+use Map\User;
+use Map\Event;
+use Map\User_event;
 
 class HomeController extends Controller
 {
@@ -23,6 +29,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $chart = Charts::database(User::all(), 'pie', 'highcharts')
+                        ->title('Mappin Charts')
+                        ->responsive(false)
+                        ->width(0)
+                        ->lastByMonth();
+        $id = Auth::user()->id;
+        $chartE = Charts::database(User_event::all(), 'line', 'highcharts')
+                        ->title('Mappin Charts')
+                        ->responsive(false)
+                        ->width(0)
+                        ->lastByMonth();
+
+        return view('home', ['chart' => $chart, 'chartE' => $chartE]);
     }
 }
