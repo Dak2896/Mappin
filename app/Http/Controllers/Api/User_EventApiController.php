@@ -38,7 +38,8 @@ class User_EventController  extends ApiBaseController
             'number_vote' => 'required',
             'text_vote' => 'required',
             'event_id' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'is_creator' => 'required',
         ]);
 
 
@@ -103,7 +104,8 @@ class User_EventController  extends ApiBaseController
           'number_vote' => 'required',
           'text_vote' => 'required',
           'event_id' => 'required',
-          'user_id' => 'required'
+          'user_id' => 'required',
+          'is_creator' => 'required'
         ]);
 
 
@@ -122,6 +124,7 @@ class User_EventController  extends ApiBaseController
         $event->start_date = $input['start_date'];
         $event->end_date = $input['end_date'];
         $event->point_id = $input['point_id'];
+        $event->is_creator = $input['is_creator'];
         $event->save();
 
 

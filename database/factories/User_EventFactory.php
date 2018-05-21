@@ -8,5 +8,6 @@ $factory->define(Map\User_Event::class, function (Faker $faker) {
       'event_id'=> Map\Event::all()->random()->id,
       'number_vote'=> $faker->randomDigit,
       'text_vote'=> $faker->text,
+      'is_creator'=> $faker->boolean,
     ];
 });
