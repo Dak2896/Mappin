@@ -162,6 +162,7 @@ return [
         Map\Providers\RouteServiceProvider::class,
 
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        PragmaRX\Tracker\Vendor\Laravel\ServiceProvider::class,
 
     ],
 
@@ -212,6 +213,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Charts' => ConsoleTVs\Charts\Charts::class,
+        'Tracker' => 'PragmaRX\Tracker\Vendor\Laravel\Facade',
 
     ],
 

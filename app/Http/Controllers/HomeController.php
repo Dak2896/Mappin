@@ -5,6 +5,7 @@ namespace Map\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Charts;
+use Tracker;
 
 use Map\User;
 use Map\Event;
@@ -39,8 +40,19 @@ class HomeController extends Controller
                         ->title('Mappin Charts')
                         ->responsive(false)
                         ->width(0)
-                        ->lastByMonth();
-
-        return view('home', ['chart' => $chart, 'chartE' => $chartE]);
+                        ->groupByMonth();
+        $chartF = Charts::database(User::all(), 'bar', 'highcharts')
+                        ->title('Mappin Charts')
+                        ->responsive(false)
+                        ->width(0)
+                        ->groupByMonth();
+        $chartG = Charts::database(User::all(), 'donut', 'highcharts')
+                        ->title('Mappin Charts')
+                        ->responsive(false)
+                        ->width(0)
+                        ->groupByMonth();
+        $users = Tracker::onlineUsers();
+//dd($users);
+        return view('home', compact('chart', 'chartE', 'chartF', 'chartG', 'users'));
     }
 }
