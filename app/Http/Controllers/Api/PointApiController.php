@@ -5,13 +5,11 @@ namespace Map\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Map\Http\Controllers\Api\ApiBaseController as ApiBaseController;
-use Map\Event;
 use Validator;
-use Map\User_Event;
+use Map\Point;
 
 
-
-class EventApiController  extends ApiBaseController
+class PointApiController  extends ApiBaseController
 {
     /**
      * Display a listing of the resource.
@@ -20,8 +18,8 @@ class EventApiController  extends ApiBaseController
      */
     public function index()
     {
-        $events = Event::all();
-        return $this->sendResponse($events->toArray(), 'Events retrieved successfully.');
+        $points = Point::all();
+        return $this->sendResponse($points->toArray(), 'Points retrieved successfully.');
     }
 
 
@@ -37,10 +35,9 @@ class EventApiController  extends ApiBaseController
 
 
         $validator = Validator::make($input, [
-            'category' => 'required',
-            'start_date' => 'required',
-            'end_date' => 'required',
-            'point_id' => 'required'
+            'event_id' => 'required',
+            'latt' => 'required',
+            'long' => 'required',
         ]);
 
 
@@ -49,10 +46,10 @@ class EventApiController  extends ApiBaseController
         }
 
 
-        $event = Event::create($input);
+        $point = Point::create($input);
 
 
-        return $this->sendResponse($event->toArray(), 'Event created.');
+        return $this->sendResponse($point->toArray(), 'Point created.');
     }
 
 
@@ -64,15 +61,15 @@ class EventApiController  extends ApiBaseController
      */
     public function show($id)
     {
-        $event = Event::find($id);
+        $point = Point::find($id);
 
 
-        if (is_null($event)) {
-            return $this->sendError('Event not found.');
+        if (is_null($point)) {
+            return $this->sendError('Point not found.');
         }
 
 
-        return $this->sendResponse($event->toArray(), 'Event retrieved successfully.');
+        return $this->sendResponse($point->toArray(), 'Point retrieved successfully.');
     }
 
 
@@ -87,15 +84,7 @@ class EventApiController  extends ApiBaseController
     *
     *
     */
-public function indexUser($id)
-{
-  $events = User_Event::where('user_id', $id)->pluck('event_id');
-  $event = Event::find($events);
 
-  //$events = $events->get()->lists('event_id')toArray();
-  return $event;
-  //return $this->sendResponse($events->get()->toArray(), 'Events of user retrieved succesfully');
-}
 
     /**
      * Update the specified resource in storage.
@@ -110,10 +99,9 @@ public function indexUser($id)
 
 
         $validator = Validator::make($input, [
-          'category' => 'required',
-          'start_date' => 'required',
-          'end_date' => 'required',
-          'point_id' => 'required'
+          'event_id' => 'required',
+          'latt' => 'required',
+          'long' => 'required',
         ]);
 
 
@@ -122,17 +110,17 @@ public function indexUser($id)
         }
 
 
-        $event = Event::find($id);
-        if (is_null($event)) {
+        $point = Point::find($id);
+        if (is_null($point)) {
             return $this->sendError('Event not found.');
         }
 
 
-        $event->category = $input['category'];
-        $event->start_date = $input['start_date'];
-        $event->end_date = $input['end_date'];
-        $event->point_id = $input['point_id'];
-        $event->save();
+
+        $point->event_id = $input['event_id'];
+        $point->latt = $input['latt'];
+        $point->long = $input['long'];
+        $point->save();
 
 
         return $this->sendResponse($event->toArray(), 'Event updated successfully.');
@@ -147,7 +135,7 @@ public function indexUser($id)
      */
     public function destroy($id)
     {
-        $event = Event::find($id);
+        $event = Point::find($id);
 
 
         if (is_null($event)) {
@@ -160,4 +148,5 @@ public function indexUser($id)
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
     }
+
 }
