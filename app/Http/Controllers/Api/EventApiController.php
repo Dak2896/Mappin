@@ -40,7 +40,8 @@ class EventApiController  extends ApiBaseController
             'category' => 'required',
             'start_date' => 'required',
             'end_date' => 'required',
-            'point_id' => 'required'
+            'point_id' => 'required',
+            'description' => 'required'
         ]);
 
 
@@ -113,7 +114,8 @@ public function indexUser($id)
           'category' => 'required',
           'start_date' => 'required',
           'end_date' => 'required',
-          'point_id' => 'required'
+          'point_id' => 'required',
+          'description' => 'required'
         ]);
 
 
@@ -132,6 +134,7 @@ public function indexUser($id)
         $event->start_date = $input['start_date'];
         $event->end_date = $input['end_date'];
         $event->point_id = $input['point_id'];
+        $event->description = $input['description'];
         $event->save();
 
 

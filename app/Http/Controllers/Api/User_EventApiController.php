@@ -9,7 +9,7 @@ use Validator;
 use Map\User_Event;
 
 
-class User_EventController  extends ApiBaseController
+class User_EventApiController  extends ApiBaseController
 {
     /**
      * Display a listing of the resource.
@@ -105,7 +105,7 @@ class User_EventController  extends ApiBaseController
           'text_vote' => 'required',
           'event_id' => 'required',
           'user_id' => 'required',
-          'is_creator' => 'required',
+          'is_creator' => 'required'
         ]);
 
 

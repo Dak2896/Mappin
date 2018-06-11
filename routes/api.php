@@ -25,19 +25,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('points/{point}', 'PointController@show');
 
 
-Route::resource('chats', 'Api\ChatApiController');
-Route::resource('points', 'Api\PointApiController');
-Route::resource('user_events', 'Api\User_EventApiController');
-Route::get('myevents/{id}', 'Api\EventApiController@indexUser');
+
 
 
 
 Route::post('login', 'Api\PassportController@login');
 Route::post('register', 'Api\PassportController@register');
-Route::resource('events', 'Api\EventApiController');
+
 
 
 Route::group(['middleware' => 'auth:api'], function(){
-Route::post('get-details', 'Api\PassportController@getDetails');
-Route::get('points', 'PointController@index');
+
+  Route::post('get-details', 'Api\PassportController@getDetails');
+  //Route::get('points', 'PointController@index');
+  Route::resource('chats', 'Api\ChatApiController');
+  Route::resource('points', 'Api\PointApiController');
+  Route::resource('user_events', 'Api\User_EventApiController');
+  Route::get('myevents/{id}', 'Api\EventApiController@indexUser');
+  Route::resource('events', 'Api\EventApiController');
+  
 });

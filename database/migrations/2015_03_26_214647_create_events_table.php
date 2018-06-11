@@ -21,6 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('end_date')->default('2015-10-08 00:07:15');
             $table->integer('point_id')->default('2');
             $table->boolean('is_active')->default(true);
+            $table->string('description')->default('nil');
         });
     }
 

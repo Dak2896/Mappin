@@ -36,7 +36,7 @@ class PointApiController  extends ApiBaseController
 
         $validator = Validator::make($input, [
             'event_id' => 'required',
-            'latt' => 'required',
+            'lat' => 'required',
             'long' => 'required',
         ]);
 
@@ -100,8 +100,8 @@ class PointApiController  extends ApiBaseController
 
         $validator = Validator::make($input, [
           'event_id' => 'required',
-          'latt' => 'required',
-          'long' => 'required',
+          'lat' => 'required',
+          'long' => 'required'
         ]);
 
 
@@ -118,7 +118,7 @@ class PointApiController  extends ApiBaseController
 
 
         $point->event_id = $input['event_id'];
-        $point->latt = $input['latt'];
+        $point->latt = $input['lat'];
         $point->long = $input['long'];
         $point->save();
 
