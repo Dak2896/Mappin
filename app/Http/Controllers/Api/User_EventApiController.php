@@ -46,6 +46,9 @@ class User_EventApiController  extends ApiBaseController
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
         }
+        if (User_Event::where('user_id', '=', Input::get('user_id'))->first() && User_Event::where('event_id', '=', Input::get('event_id'))->first() ) {
+              return $this->sendError('Validation Error, you already partecipate this event.', $validator->errors());
+          }
 
 
         $event = User_Event::create($input);
