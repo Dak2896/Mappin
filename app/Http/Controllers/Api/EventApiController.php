@@ -77,7 +77,22 @@ class EventApiController  extends ApiBaseController
     }
 
 
+    //ACTIVE EVENTS
+    public function aviableEvents($user_id)
+    {
 
+      $events = User_Event::where('user_id', $user_id)->pluck('event_id');
+
+
+     $aviable_events_before  = User_Event::whereNotIn('event_id', $events)->pluck('event_id');
+     $aviable_events_after = Event::find($aviable_events_before)->where('is_active', 1);
+
+
+      if (is_null($aviable_events_after)) {
+          return $this->sendError('Event not found.');
+      }
+      return $this->sendResponse($aviable_events_after->toArray(), 'Events retrieved successfully.');
+    }
 
     /** Get event of logged user
     *
@@ -88,15 +103,17 @@ class EventApiController  extends ApiBaseController
     *
     *
     */
-public function indexUser($id)
-{
-  $events = User_Event::where('user_id', $id)->pluck('event_id');
-  $event = Event::find($events);
 
-  //$events = $events->get()->lists('event_id')toArray();
-  return $event;
-  //return $this->sendResponse($events->get()->toArray(), 'Events of user retrieved succesfully');
-}
+    //EVENTS  WICH USER PARTECIPATE ALREADY (created or only partecipation)
+    public function indexUser($id)
+    {
+      $events = User_Event::where('user_id', $id)->pluck('event_id');
+      $event = Event::find($events);
+
+      //$events = $events->get()->lists('event_id')toArray();
+      return $event;
+      //return $this->sendResponse($events->get()->toArray(), 'Events of user retrieved succesfully');
+    }
 
     /**
      * Update the specified resource in storage.

@@ -19,7 +19,7 @@ class User_EventApiController  extends ApiBaseController
     public function index()
     {
         $events = User_Event::all();
-        return $this->sendResponse($events->toArray(), 'User_Events retrieved successfully.');
+        return $this->sendResponse($events->toArray(), 'Partecipations retrieved successfully.');
     }
 
 
@@ -71,11 +71,11 @@ class User_EventApiController  extends ApiBaseController
 
 
         if (is_null($event)) {
-            return $this->sendError('User_Event not found.');
+            return $this->sendError('Partecipation not found.');
         }
 
 
-        return $this->sendResponse($event->toArray(), 'Event retrieved successfully.');
+        return $this->sendResponse($event->toArray(), 'Partecipation retrieved successfully.');
     }
 
 
@@ -114,25 +114,43 @@ class User_EventApiController  extends ApiBaseController
 
 
         if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
+            return $this->sendError('Validation Error, some data could miss', $validator->errors());
         }
 
 
-        $event = User_Event::find($id);
-        if (is_null($event)) {
-            return $this->sendError('Event not found.');
+        $partectipation = User_Event::find($id);
+        if (is_null($partectipation)) {
+            return $this->sendError('Partecipation not found.');
         }
 
 
-        $event->number_vote = $input['number_vote'];
-        $event->text_vote = $input['text_vote'];
-        $event->event_id = $input['event_id'];
-        $event->user_id = $input['user_id'];
-        $event->is_creator = $input['is_creator'];
-        $event->save();
+        $partectipation->number_vote = $input['number_vote'];
+        $partectipation->text_vote = $input['text_vote'];
+        $partectipation->event_id = $input['event_id'];
+        $partectipation->user_id = $input['user_id'];
+        $partectipation->is_creator = $input['is_creator'];
+        $partectipation->save();
 
 
-        return $this->sendResponse($event->toArray(), 'Event updated successfully.');
+        return $this->sendResponse($partectipation->toArray(), 'Partecipation updated successfully.');
+    }
+
+    // HANDLE IF USER ALREADY PARTECIPATE, IF EMPTY HE DOESN'T IF RESPONSE IS SUCCESS HE PARTECIPATE
+    public function findParecipationsOfUser($event_id, $user_id)
+    {
+      $partectipations = User_Event::where([
+        'event_id'=> $event_id,
+        'user_id'=>$user_id
+      ]);
+
+
+
+      if (is_null($partectipations)) {
+          return $this->sendError('Partecipation not found.');
+      }
+
+
+      return $this->sendResponse($partectipations->get()->toArray(), 'Partecipations retrive successfully.');
     }
 
 
@@ -148,7 +166,7 @@ class User_EventApiController  extends ApiBaseController
 
 
         if (is_null($event)) {
-            return $this->sendError('Event not found.');
+            return $this->sendError('Partecipation not found.');
         }
 
 
