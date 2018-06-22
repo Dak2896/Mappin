@@ -85,13 +85,13 @@ class EventApiController  extends ApiBaseController
 
 
      $aviable_events_before  = User_Event::whereNotIn('event_id', $events)->pluck('event_id');
-     $aviable_events_after = Event::find($aviable_events_before)->where('is_active', 1);
+     $aviable_events_after = Event::where('is_active', 1)->find($aviable_events_before);
 
 
       if (is_null($aviable_events_after)) {
           return $this->sendError('Event not found.');
       }
-      return $this->sendResponse($aviable_events_after->toArray(), 'Events retrieved successfully.');
+      return $this->sendResponse($aviable_events_after, 'Events retrieved successfully.');
     }
 
     /** Get event of logged user

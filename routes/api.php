@@ -24,8 +24,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('points/{point}', 'PointController@show');
 
-Route::get('myevents/{event_id}', 'Api\EventApiController@indexUser');
 
+
+Route::get('my_events/{event_id}', 'Api\EventApiController@indexUser');
 Route::get('active_events/{user_id}', 'Api\EventApiController@aviableEvents');
 
 
@@ -42,7 +43,6 @@ Route::group(['middleware' => 'auth:api'], function(){
   Route::resource('points', 'Api\PointApiController');
   Route::resource('user_events', 'Api\User_EventApiController');
   Route::get('user_events_find/{id}/{user_id}','Api\User_EventApiController@findParecipationsOfUser');
-
 
   Route::resource('events', 'Api\EventApiController');
 
