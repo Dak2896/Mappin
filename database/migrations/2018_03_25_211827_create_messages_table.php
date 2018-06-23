@@ -16,7 +16,6 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->datetime('date');
             $table->unsignedInteger('chat_id');
             $table->foreign('chat_id')->references('id')->on('chats')->onDelete('cascade');
 
@@ -26,7 +25,7 @@ class CreateMessagesTable extends Migration
 
 
 
-            $table->longtext('messageText');
+            $table->longtext('message_text');
         });
     }
 

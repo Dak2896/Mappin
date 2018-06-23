@@ -26,14 +26,19 @@ Route::get('points/{point}', 'PointController@show');
 
 
 
-Route::get('my_events/{event_id}', 'Api\EventApiController@indexUser');
-Route::get('active_events/{user_id}', 'Api\EventApiController@aviableEvents');
-
+Route::get('myEvents/{event_id}', 'Api\EventApiController@indexUser');
+Route::get('activeEvents/{user_id}', 'Api\EventApiController@aviableEvents');
+Route::get('getName/{user_id}', 'Api\MessageApiController@getName');
 
 Route::post('login', 'Api\PassportController@login');
 Route::post('register', 'Api\PassportController@register');
+Route::resource('messages', 'Api\MessageApiController');
+Route::get('messagesOfChat/{chat_id}', 'Api\MessageApiController@messageOfChat');
 
+Route::get('nameOfEvent/{user_id}','Api\ChatApiController@nameOfEvent');
+Route::get('activeChat/{user_id}','Api\ChatApiController@activeChat');
 
+Route::get('userName/{user_id}','Api\MessageApiController@userName');
 
 Route::group(['middleware' => 'auth:api'], function(){
 

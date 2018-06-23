@@ -6,8 +6,10 @@ namespace Map\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use Map\Http\Controllers\Api\ApiBaseController as ApiBaseController;
 use Map\Chat;
+use Map\Event;
+use Map\User_Event;
 use Validator;
-//use Map\User_Event;
+
 
 
 class ChatApiController  extends ApiBaseController
@@ -139,5 +141,31 @@ class ChatApiController  extends ApiBaseController
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
     }
+
+
+  //CHAT OF EVENTS IN WICH USER PARTECIPATE
+
+    public function activeChat($id)
+    {
+      $events = User_Event::where('user_id', $id)->pluck('event_id');
+      $event = Event::where('is_active', '1')->find($events)->pluck('id');
+      $chats = Chat::whereIn('event_id', $event)->pluck('id');
+
+      return $this->sendResponse($chats->toArray(), 'Events of user retrieved succesfully');
+    }
+
+
+    //TAKE EVENT NAME FOR ACTIVE CHAT
+    public function nameOfEvent($id)
+    {
+      $events = User_Event::where('user_id', $id)->pluck('event_id');
+      $event = Event::where('is_active', '1')->find($events)->pluck('description');
+    //  $chats = Chat::whereIn('event_id', $event)->get();
+      //$event_id_of_chat = $chats->pluck('event_id');
+      //$event_name = Event::find($event_id_of_chat)->pluck('description');
+      return $this->sendResponse($event->toArray(), 'Events of user retrieved succesfully');
+    }
+
+    
 
   }
