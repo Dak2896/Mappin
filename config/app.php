@@ -163,6 +163,7 @@ return [
 
         ConsoleTVs\Charts\ChartsServiceProvider::class,
 
+
     ],
 
     /*

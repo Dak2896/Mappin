@@ -40,7 +40,19 @@ class HomeController extends Controller
                         ->responsive(false)
                         ->width(0)
                         ->lastByMonth();
+        $chartF = Charts::database(User::all(), 'bar', 'highcharts')
+                        ->title('Mappin Charts')
+                        ->responsive(false)
+                        ->width(0)
+                        ->groupByMonth();
+        $chartG = Charts::database(User::all(), 'donut', 'highcharts')
+                        ->title('Mappin Charts')
+                        ->responsive(false)
+                        ->width(0)
+                        ->groupByMonth();
 
-        return view('home', ['chart' => $chart, 'chartE' => $chartE]);
+
+        return view('home', compact('chart', 'chartE', 'chartF', 'chartG'));
+                
     }
 }
