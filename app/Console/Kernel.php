@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-       \App\Console\Commands\Inspire::class,
+      'Map\Console\Commands\setEvents',
     ];
 
     /**
@@ -25,26 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-      $schedule->call(function () {
-        $events = Event::all()->pluck('end_date');
-        $now = Carbon::now();
-        if (is_null($events)) {
-            return $this->sendError('Events not set.');
-        }
-        foreach ($events as $eve)
-        {
-          $datework = new Carbon($eve);
-          $diff = $now->diffInMinutes($datework, false);
-          if($diff <= 0)
-          {
-            $event = Event::where('end_date', $eve)->update(['is_active'=> 0]);
-          }
-          if($diff > 1)
-          {
-            $event = Event::where('end_date', $eve)->update(['is_active'=> 1]);
-          }
-        }
-      })->everyMinute();
+      $schedule->command('set:events')->everyMinute();
     }
 
     /**
