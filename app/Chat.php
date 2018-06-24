@@ -10,4 +10,8 @@ class Chat extends Model
     {
       return $this->hasMany('Map\Message');
     }
+
+    protected $fillable = [
+          'event_id'
+        ];
 }
