@@ -42,7 +42,7 @@ class HomeController extends Controller
                         ->title('Partecipazioni')
                         ->responsive(false)
                         ->width(0)
-                        ->elementLabel('Partecipazioni evento')
+                        ->elementLabel('Partecipazioni eventi')
                         ->yaxistitle('numero partecipanti')
                         ->groupBy('user_id')
                         ->labels($names);
