@@ -64,14 +64,13 @@ class HomeController extends Controller
                         ->groupByMonth();
 
 
-      /*  if($admin == 1)
+        if($admin == 1)
         {
-            return view('home', compact('chart', 'chartE', 'chartF', 'chartG', 'chartAd'));
+            return view('homeAdmin', compact('chart', 'chartE', 'chartF', 'chartG', 'chartAd'));
         }
         else
-        {*/
+        {
             return view('home', compact('chart', 'chartE', 'chartF', 'chartG'));
         }
-
 
 }
