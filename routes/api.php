@@ -26,6 +26,7 @@ Route::get('nameOfEvent/{user_id}','Api\ChatApiController@nameOfEvent');
 Route::get('activeChat/{user_id}','Api\ChatApiController@activeChat');
 
 Route::post('register', 'Api\PassportController@register');
+Route::post('login', 'Api\PassportController@login');
 
 Route::group(['middleware' => 'auth:api'], function(){
 
@@ -37,7 +38,7 @@ Route::group(['middleware' => 'auth:api'], function(){
   Route::get('activeEvents/{user_id}', 'Api\EventApiController@aviableEvents');
   Route::get('getName/{user_id}', 'Api\MessageApiController@getName');
 
-  Route::post('login', 'Api\PassportController@login');
+
   Route::resource('messages', 'Api\MessageApiController');
   Route::get('messagesOfChat/{chat_id}', 'Api\MessageApiController@messageOfChat');
 
