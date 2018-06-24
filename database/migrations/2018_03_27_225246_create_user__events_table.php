@@ -20,7 +20,9 @@ class CreateUserEventsTable extends Migration
             $table->longtext('text_vote');
             $table->boolean('is_creator');
 
-
+//===============================================//
+//================= FOREIGN KEYS ================//
+//===============================================//
             $table->unsignedInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
 

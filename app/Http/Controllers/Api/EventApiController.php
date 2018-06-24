@@ -107,11 +107,11 @@ class EventApiController  extends ApiBaseController
     //EVENTS  WICH USER PARTECIPATE ALREADY (created or only partecipation)
     public function indexUser($id)
     {
+
       $events = User_Event::where('user_id', $id)->pluck('event_id');
       $event = Event::where('is_active', '1')->find($events);
 
-
-      return $this->sendResponse($event->toArray(), 'Events of user retrieved succesfully');
+      return $this->sendResponse($event->toArray(), 'Events of user retrieved succesfully');  
     }
 
     /**
