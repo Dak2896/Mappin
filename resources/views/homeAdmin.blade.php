@@ -13,7 +13,7 @@
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
                         <a href="#">
-                            Admin 
+                            Admin
                         </a>
                     </li>
                     <li>
@@ -59,24 +59,32 @@
                                     <div class="container">
                                       <div class="row">
                                         <div class="col">
-                                        {!! $chart->html() !!}
+                                        {!! $chartAd->html() !!}
                                         {!! Charts::scripts() !!}
-                                        {!! $chart->script() !!}
+                                        {!! $chartAd->script() !!}
                                         </div>
                                         <div class="col">
-                                        {!! $chartE->html() !!}
-                                        {!! $chartE->script() !!}
+                                        {!! $chartAd2->html() !!}
+                                        {!! $chartAd2->script() !!}
                                         </div>
                                         <div class="w-100"></div>
                                         <div class="col">
-                                        {!! $chartF->html() !!}
-                                        {!! $chartF->script() !!}
+                                        {!! $chartAd3->html() !!}
+                                        {!! $chartAd3->script() !!}
                                         </div>
                                         <div class="col">
-                                        {!! $chartG->html() !!}
-                                        {!! $chartG->script() !!}
+                                        {!! $chartAd4->html() !!}
+                                        {!! $chartAd4->script() !!}
                                         </div>
                                         <div class="w-100"></div>
+                                        <div class="col">
+                                        {!! $chartAd5->html() !!}
+                                        {!! $chartAd5->script() !!}
+                                        </div>
+                                        <div class="col">
+                                        {!! $chartAd6->html() !!}
+                                        {!! $chartAd6->script() !!}
+                                        </div>
                                       </div>
                                     </div>
 
@@ -92,50 +100,4 @@
             <!-- /#page-content-wrapper -->
 
         </div>
-
-
-<!--<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header"><center>Dashboard</center></div>
-
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                    <div class="container">
-                      <div class="row">
-                        <div class="col">
-                        {!! $chart->html() !!}
-                        {!! Charts::scripts() !!}
-                        {!! $chart->script() !!}
-                        </div>
-                        <div class="col">
-                        {!! $chartE->html() !!}
-                        {!! $chartE->script() !!}
-                        </div>
-                        <div class="w-100"></div>
-                        <div class="col">
-                        {!! $chartF->html() !!}
-                        {!! $chartF->script() !!}
-                        </div>
-                        <div class="col">
-                        {!! $chartG->html() !!}
-                        {!! $chartG->script() !!}
-                        </div>
-                        <div class="w-100"></div>
-                      </div>
-                    </div>
-
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
-</div>-->
 @endsection
