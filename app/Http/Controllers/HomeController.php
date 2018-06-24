@@ -31,6 +31,7 @@ class HomeController extends Controller
     {
 
         $id = Auth::user()->id;
+        $admin = Auth::user()->admin;
         $names = Event::pluck('description');
         $chart = Charts::database(User::all(), 'bar', 'highcharts')
                         ->title('Sono io')
@@ -63,7 +64,7 @@ class HomeController extends Controller
                         ->groupByMonth();
 
 
-        if($id == 1)
+        if($admin == 1)
         {
             return view('homeAdmin', compact('chart', 'chartE', 'chartF', 'chartG', 'chartAd'));
         }
