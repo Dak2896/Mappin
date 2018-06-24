@@ -15,4 +15,8 @@ class Message extends Model
   {
     return $this->belongsTo('Map\Chat');
   }
+
+  protected $fillable = [
+        'chat_id', 'user_id','message_text'
+      ];
 }

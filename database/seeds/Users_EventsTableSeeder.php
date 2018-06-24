@@ -11,6 +11,6 @@ class Users_EventsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Map\User_Event::class, 10)->create();
+        factory(Map\User_Event::class, 15)->create();
     }
 }

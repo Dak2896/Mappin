@@ -18,6 +18,7 @@ class CreateUserEventsTable extends Migration
             $table->timestamps();
             $table->integer('number_vote');
             $table->longtext('text_vote');
+            $table->boolean('is_creator');
 
 //===============================================//
 //================= FOREIGN KEYS ================//

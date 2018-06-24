@@ -8,7 +8,7 @@ class Event extends Model
 {
 
   protected $fillable = [
-        'category', 'start_date','end_date', 'point_id'
+        'category', 'start_date','end_date', 'point_id', 'description'
       ];
   public function photos()
   {

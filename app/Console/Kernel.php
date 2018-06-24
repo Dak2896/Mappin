@@ -4,7 +4,8 @@ namespace Map\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use Map\Event;
+use Carbon\Carbon;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+      'Map\Console\Commands\setEvents',
     ];
 
     /**
@@ -24,8 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+      $schedule->command('set:events')->everyMinute();
     }
 
     /**

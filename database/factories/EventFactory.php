@@ -8,5 +8,6 @@ $factory->define(Map\Event::class, function (Faker $faker) {
       'point_id'=> $faker->randomDigit,
       'start_date' => $faker->datetime,
       'end_date' =>  $faker->datetime,
+      'is_active' =>  $faker->boolean,
     ];
 });

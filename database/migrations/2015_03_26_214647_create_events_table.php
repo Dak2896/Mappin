@@ -17,9 +17,11 @@ class CreateEventsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('category')->default('no_name');
-            $table->datetime('start_date')->default('2015-10-08 00:07:15');
-            $table->datetime('end_date')->default('2015-10-08 00:07:15');
+            $table->string('start_date')->default('2015-10-08 00:07:15');
+            $table->string('end_date')->default('2015-10-08 00:07:15');
             $table->integer('point_id')->default('2');
+            $table->boolean('is_active')->default(true);
+            $table->string('description')->default('nil');
         });
     }
 
