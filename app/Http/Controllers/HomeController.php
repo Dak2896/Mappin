@@ -29,33 +29,43 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $chart = Charts::database(User::all(), 'pie', 'highcharts')
-                        ->title('Mappin Charts')
-                        ->responsive(false)
-                        ->width(0)
-                        ->lastByMonth();
+
         $id = Auth::user()->id;
-        $chartE = Charts::database(User_event::all(), 'line', 'highcharts')
-                        ->title('Mappin Charts')
+        $names = Event::pluck('description');
+        $chart = Charts::database(User::all(), 'bar', 'highcharts')
+                        ->title('Sono io')
                         ->responsive(false)
                         ->width(0)
                         ->lastByMonth();
+
+        $chartE = Charts::database(User_event::all(), 'line', 'highcharts')
+                        ->title('Partecipazioni')
+                        ->responsive(false)
+                        ->width(0)
+                        ->elementLabel('Partecipazioni evento')
+                        ->yaxistitle('numero partecipanti')
+                        ->groupBy('user_id')
+                        ->labels($names);
         $chartF = Charts::database(User::all(), 'bar', 'highcharts')
                         ->title('Mappin Charts')
                         ->responsive(false)
                         ->width(0)
                         ->groupByMonth();
         $chartG = Charts::database(User::all(), 'donut', 'highcharts')
-                        ->title('Mappin Charts')
+                        ->title('todos')
+                        ->responsive(false)
+                        ->width(0)
+                        ->groupByMonth();
+        $chartAd = Charts::database(User_event::all(), 'bar', 'highcharts')
+                        ->title('Partecipazadasdasdioni')
                         ->responsive(false)
                         ->width(0)
                         ->groupByMonth();
 
 
-        $user = Auth::user();
-        if($user->admin == 1)
+        if($id == 1)
         {
-            return view('homeAdmin', compact('chart', 'chartE', 'chartF', 'chartG'));
+            return view('homeAdmin', compact('chart', 'chartE', 'chartF', 'chartG', 'chartAd'));
         }
         else
         {
