@@ -10,7 +10,7 @@ class setEvents extends Command
 {
 
       protected $name = 'set:Events';
-
+      /*
       $events = Event::all()->pluck('end_date');
       $now = Carbon::now();
       if (is_null($events)) {
@@ -28,7 +28,7 @@ class setEvents extends Command
         {
           $event = Event::where('end_date', $eve)->update(['is_active'=> 1]);
         }
-      }
+    }*/
 
 
     /**

@@ -52,7 +52,16 @@ class HomeController extends Controller
                         ->groupByMonth();
 
 
-        return view('home', compact('chart', 'chartE', 'chartF', 'chartG'));
-                
+        $user = Auth::user();
+        if($user->admin == 1)
+        {
+            return view('homeAdmin', compact('chart', 'chartE', 'chartF', 'chartG'));
+        }
+        else
+        {
+            return view('home', compact('chart', 'chartE', 'chartF', 'chartG'));
+        }
+
+
     }
 }

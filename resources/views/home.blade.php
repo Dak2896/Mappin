@@ -5,7 +5,7 @@
 <title>Mappin</title>
 
 @section('content')
-        
+
        <div id="wrapper">
 
             <!-- Sidebar -->
@@ -13,7 +13,7 @@
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
                         <a href="#">
-                            Mappin
+                            User
                         </a>
                     </li>
                     <li>
