@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $id = Auth::user()->id;
+        $id = Auth::user()->admin;
         $names = Event::pluck('description');
         $chart = Charts::database(User::all(), 'bar', 'highcharts')
                         ->title('Sono io')
