@@ -25,7 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('points/{point}', 'PointController@show');
 
 
-
+Route::post('setActiveEvents', 'Api\EventApiController@setActiveEvents');
 Route::get('myEvents/{event_id}', 'Api\EventApiController@indexUser');
 Route::get('activeEvents/{user_id}', 'Api\EventApiController@aviableEvents');
 Route::get('getName/{user_id}', 'Api\MessageApiController@getName');

@@ -8,7 +8,7 @@ use Map\Http\Controllers\Api\ApiBaseController as ApiBaseController;
 use Map\Event;
 use Validator;
 use Map\User_Event;
-
+use Carbon\Carbon;
 
 
 class EventApiController  extends ApiBaseController
@@ -179,4 +179,29 @@ class EventApiController  extends ApiBaseController
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
     }
+
+
+    public function setActiveEvents()
+    {
+      $events = Event::all()->pluck('end_date');
+      $now = Carbon::now();
+      if (is_null($events)) {
+          return $this->sendError('Events not set.');
+      }
+      foreach ($events as $eve)
+      {
+        $datework = new Carbon($eve);
+        $diff = $now->diffInMinutes($datework, false);
+        if($diff <= 0)
+        {
+          $event = Event::where('end_date', $eve)->update(['is_active'=> 0]);
+        }
+        if($diff > 1)
+        {
+          $event = Event::where('end_date', $eve)->update(['is_active'=> 1]);
+        }
+      }
+      return $this->sendResponse([], 'Events set');
+  }
+
 }
