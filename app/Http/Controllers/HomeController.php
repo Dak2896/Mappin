@@ -72,5 +72,5 @@ class HomeController extends Controller
         {
             return view('home', compact('chart', 'chartE', 'chartF', 'chartG'));
         }
-
+    }
 }
