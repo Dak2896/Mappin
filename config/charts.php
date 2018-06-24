@@ -24,7 +24,7 @@ return [
         'template' => 'material', // The default chart color template.
         'legend' => true, // Whether to enable the chart legend (where applicable).
         'x_axis_title' => false, // The title of the x-axis
-        'y_axis_title' => values, // The title of the y-axis (When set to null will use element_label value).
+        'y_axis_title' => 'values', // The title of the y-axis (When set to null will use element_label value).
         'loader' => [
             'active' => true, // Determines the if loader is active by default.
             'duration' => 500, // In milliseconds.
