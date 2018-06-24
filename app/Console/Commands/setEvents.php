@@ -14,7 +14,7 @@ class setEvents extends Command
       $events = Event::all()->pluck('end_date');
       $now = Carbon::now();
       if (is_null($events)) {
-          return $this->sendError('Events not set.');
+          //return $this->sendError('Events not set.');
       }
       foreach ($events as $eve)
       {
