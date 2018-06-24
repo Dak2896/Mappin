@@ -28,29 +28,29 @@ Route::get('activeChat/{user_id}','Api\ChatApiController@activeChat');
 Route::post('register', 'Api\PassportController@register');
 Route::post('login', 'Api\PassportController@login');
 
+
 Route::group(['middleware' => 'auth:api'], function(){
 
-  Route::get('points/{point}', 'PointController@show');
-  Route::resource('events', 'Api\EventApiController');
+  Route::resource('points', 'Api\PointApiController');
   Route::get('activePoints', 'Api\PointApiController@getActivePoints');
+  Route::get('points/{point}', 'PointController@show');
+
+  Route::resource('events', 'Api\EventApiController');
+  Route::get('activeEvents/{user_id}', 'Api\EventApiController@aviableEvents');
   Route::post('setActiveEvents', 'Api\EventApiController@setActiveEvents');
   Route::get('myEvents/{event_id}', 'Api\EventApiController@indexUser');
-  Route::get('activeEvents/{user_id}', 'Api\EventApiController@aviableEvents');
+
   Route::get('getName/{user_id}', 'Api\MessageApiController@getName');
-
-
   Route::resource('messages', 'Api\MessageApiController');
   Route::get('messagesOfChat/{chat_id}', 'Api\MessageApiController@messageOfChat');
-
-
-
-
   Route::get('userName/{user_id}','Api\MessageApiController@userName');
 
-  Route::post('get-details', 'Api\PassportController@getDetails');
-  //Route::get('points', 'PointController@index');
   Route::resource('chats', 'Api\ChatApiController');
-  Route::resource('points', 'Api\PointApiController');
+
+
+  Route::post('get-details', 'Api\PassportController@getDetails');
+
+
   Route::resource('user_events', 'Api\User_EventApiController');
   Route::get('user_events_find/{id}/{user_id}','Api\User_EventApiController@findParecipationsOfUser');
 
