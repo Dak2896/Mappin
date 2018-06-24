@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Map\Http\Controllers\Api\ApiBaseController as ApiBaseController;
 use Validator;
 use Map\Point;
-
+use Map\Event;
 
 class PointApiController  extends ApiBaseController
 {
@@ -147,6 +147,19 @@ class PointApiController  extends ApiBaseController
 
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
+    }
+
+    public function getActivePoints()
+    {
+        $events = Event::where('is_active', '1')->pluck('id');
+        $points = Point::whereIn('event_id', $events)->get();
+
+
+    if(is_null($points)) {
+        return $this->sendError('Event not found.');
+    }
+
+    return $this->sendResponse($points, 'Points retrive successfully.');
     }
 
 }

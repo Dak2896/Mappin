@@ -141,8 +141,6 @@ class ChatApiController  extends ApiBaseController
 
         return $this->sendResponse($id, 'Tag deleted successfully.');
     }
-
-
   //CHAT OF EVENTS IN WICH USER PARTECIPATE
 
     public function activeChat($id)
@@ -165,7 +163,5 @@ class ChatApiController  extends ApiBaseController
       //$event_name = Event::find($event_id_of_chat)->pluck('description');
       return $this->sendResponse($event->toArray(), 'Events of user retrieved succesfully');
     }
-
-    
-
   }
+

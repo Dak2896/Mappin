@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('number_events')->default('0');
             $table->rememberToken();
             $table->timestamps();
+            $table->boolean('admin')->default('0');
 
         });
     }

@@ -58,6 +58,8 @@
         </div>
     </div>
 </div>
+@endsection
+
 <!--login di laravel-->
 <!--<div class="container">
     <div class="row justify-content-center">
@@ -124,4 +126,3 @@
         </div>
     </div>
 </div>-->
-@endsection
