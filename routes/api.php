@@ -14,6 +14,10 @@ use Map\User;
 |
 */
 
+
+Route::post('seeImage','Api\ImageApiController@seeImage');
+Route::post('uploadMyImage/{user_id}','Api\ImageApiController@uploadMyImage');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
