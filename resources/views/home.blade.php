@@ -20,15 +20,6 @@
                         <a href="#">Dashboard</a>
                     </li>
                     <li>
-                        <a href="#">Shortcuts</a>
-                    </li>
-                    <li>
-                        <a href="#">Overview</a>
-                    </li>
-                    <li>
-                        <a href="#">Events</a>
-                    </li>
-                    <li>
                         <a href="#">About</a>
                     </li>
                     <li>
