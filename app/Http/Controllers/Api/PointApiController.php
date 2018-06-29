@@ -162,4 +162,21 @@ class PointApiController  extends ApiBaseController
     return $this->sendResponse($points, 'Points retrive successfully.');
     }
 
+
+    public function getCategories()
+    {
+      $points = Event::where('is_active', '1')->pluck('category');
+
+      if(is_null($points))
+      {
+          return $this->sendError('Point not found.');
+      }
+
+      return $this->sendResponse($points, 'Points retrive successfully.');
+    }
+
+
+
+
+
 }

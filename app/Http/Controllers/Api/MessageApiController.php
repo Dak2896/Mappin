@@ -151,13 +151,13 @@ class MessageApiController  extends ApiBaseController
   //MESSAGES OF CHAT
     public function messageOfChat($chat_id)
     {
-      $messages = Message::where('chat_id', $chat_id)->pluck('message_text');
+      $messages = Message::where('chat_id', $chat_id);
 
       if (is_null($messages)) {
           return $this->sendError('Messages  not found.');
       }
 
-      return $this->sendResponse($messages->toArray(), 'Messages retrive successfully.');
+      return $this->sendResponse($messages->get()->toArray(), 'Messages retrive successfully.');
   }
 
 

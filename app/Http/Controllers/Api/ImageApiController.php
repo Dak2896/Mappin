@@ -14,25 +14,34 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageApiController  extends ApiBaseController
 {
-    public function seeImage(Request $image_name)
+    public function seeImage(Request $request)
     {
-      return asset('storage/ciao.jpg');
+      $url = asset('storage/usersProfile/'.$request->image_name.'.png');
+      return $this->sendResponse($url, 'Image profile retrive.');
     }
 
 
 
-    public function uploadMyImage(Request $request, $user_id)
+    public function uploadMyImage(Request $request)
     {
          //$path = $request->file('avatar')->store('avatars');
        //$path = Storage::putFile('User'.$user_id, $request->file('avatar'));
         //return $path;
         $path = $request->file('avatar')->storeAs(
-                  'public/avatars', $user_id .'.png');
+                  'public/usersProfile', $request->user_id .'.png');
          //Storage::put('file.jpg', $contents);
         //  $request->file('Active')->store('avatars');
 
          /*if($request->file('file') == null()){
              return  "cacca";/*$this->sendError('no image uploaded.', $validator->errors());*/
           return $path;
+    }
+
+
+    public function downloadImage(Request $request)
+    {
+
+      return $url = Storage::url('1.png');
+      //return Storage::disk('public')->download('usersProfile/'.$request->id.'.png');
     }
 }
