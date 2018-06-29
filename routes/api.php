@@ -13,14 +13,7 @@ use Map\User;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('messagesOfChat/{chat_id}', 'Api\MessageApiController@messageOfChat');
 
-Route::post('seeImage','Api\ImageApiController@seeImage');
-Route::post('uploadMyImage','Api\ImageApiController@uploadMyImage');
-Route::post('downloadImage','Api\ImageApiController@downloadImage');
-Route::get('categories', 'Api\PointApiController@getCategories');
-Route::get('userName/{user_id}','Api\MessageApiController@userName');
-Route::post('updateUserData', 'Api\UserApiController@updateUserData');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -51,7 +44,14 @@ Route::group(['middleware' => 'auth:api'], function(){
   Route::get('getName/{user_id}', 'Api\MessageApiController@getName');
   Route::resource('messages', 'Api\MessageApiController');
 
+  Route::get('messagesOfChat/{chat_id}', 'Api\MessageApiController@messageOfChat');
 
+  Route::post('seeImage','Api\ImageApiController@seeImage');
+  Route::post('uploadMyImage','Api\ImageApiController@uploadMyImage');
+  Route::post('downloadImage','Api\ImageApiController@downloadImage');
+  Route::get('categories', 'Api\PointApiController@getCategories');
+  Route::get('userName/{user_id}','Api\MessageApiController@userName');
+  Route::post('updateUserData', 'Api\UserApiController@updateUserData');
 
   Route::resource('chats', 'Api\ChatApiController');
 
