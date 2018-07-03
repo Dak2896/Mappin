@@ -23,8 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::get('events/{event}', 'EventController@show');
 Route::resource('events', 'Api\EventApiController')->middleware('auth:api');
 
-Route::get('nameOfEvent/{user_id}','Api\ChatApiController@nameOfEvent');
-Route::get('activeChat/{user_id}','Api\ChatApiController@activeChat');
+
 
 Route::post('register', 'Api\PassportController@register');
 Route::post('login', 'Api\PassportController@login');
@@ -58,7 +57,8 @@ Route::group(['middleware' => 'auth:api'], function(){
 
   Route::post('get-details', 'Api\PassportController@getDetails');
 
-
+  Route::get('nameOfEvent/{user_id}','Api\ChatApiController@nameOfEvent');
+  Route::get('activeChat/{user_id}','Api\ChatApiController@activeChat');
   Route::resource('user_events', 'Api\User_EventApiController');
   Route::get('user_events_find/{id}/{user_id}','Api\User_EventApiController@findParecipationsOfUser');
 
